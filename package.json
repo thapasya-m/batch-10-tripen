@@ -1,0 +1,9 @@
+{
+  "name": "batch-10-tripen",
+  "version": "1.0.0",
+  "description": "A MERN travel timeline application",
+  "main": "index.js",
+  "repository": "https://github.com/pesto-students/batch-10-tripen.git",
+  "license": "MIT",
+  "dependencies": {}
+}
