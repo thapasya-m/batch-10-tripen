@@ -1,0 +1,67 @@
+version: 2.1
+jobs:
+  build-client:
+    working_directory: ~/batch-10-tripen/client #todo: store env
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn install --frozen-lockfile
+      - restore_cache:
+          key: v1-deps-client-cache-{{ checksum "./client/yarn.lock" }}
+      - save_cache:
+          key: v1-deps-client-cache-{{ checksum "./client/yarn.lock" }}
+          paths:
+            - ./node_modules
+  test-client:
+    working_directory: ~/testcircleci/client
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-deps-client-cache-{{ checksum "./client/yarn.lock" }}
+      - run:
+          name: Test client
+          command: yarn test:client
+  build-server:
+    working_directory: ~/batch-10-tripen/server #todo: store env
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: yarn install --frozen-lockfile
+      - restore_cache:
+          key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
+      - save_cache:
+          key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
+          paths:
+            - ./node_modules
+  test-server:
+    working_directory: ~/testcircleci/server
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - checkout
+      - restore_cache:
+          key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
+      - run:
+          name: Test server
+          command: yarn test:server
+workflows:
+  version: 2
+  build-test:
+    jobs:
+      - build-client
+      - test-client:
+          requires:
+            - build-client
+      - build-server
+      - test-server:
+          requires:
+            - build-server
+
