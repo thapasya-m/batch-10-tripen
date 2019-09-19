@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v2-deps-client-cache-{{ checksum "yarn.lock" }}
+          key: v2-deps-client-cache-{{ checksum "./client/yarn.lock" }}
       - run:
           name: Test client
           command: yarn test:client
@@ -36,9 +36,9 @@ jobs:
           name: Install dependencies
           command: yarn install --frozen-lockfile
       - restore_cache:
-          key: v1-deps-server-cache-{{ checksum "yarn.lock" }}
+          key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
       - save_cache:
-          key: v1-deps-server-cache-{{ checksum "yarn.lock" }}
+          key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
           paths:
             - ./node_modules
   test-server:
@@ -48,7 +48,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v1-deps-server-cache-{{ checksum "yarn.lock" }}
+          key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
       - run:
           name: Test server
           command: yarn test:server
