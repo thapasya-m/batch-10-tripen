@@ -51,7 +51,7 @@ jobs:
           key: v1-deps-server-cache-{{ checksum "./server/yarn.lock" }}
       - run:
           name: Test server
-          command: cd server && yarn && yarn test
+          command: yarn && yarn test
 workflows:
   version: 2
   build-test:
