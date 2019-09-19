@@ -14,7 +14,7 @@ jobs:
       - save_cache:
           key: v1-deps-client-cache-{{ checksum "yarn.lock" }}
           paths:
-            - ./node_modules
+            - node_modules
   test-client:
     working_directory: ~/batch-10-tripen/client
     docker:
