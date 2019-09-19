@@ -25,7 +25,7 @@ jobs:
           key: v1-deps-client-cache-{{ checksum "./client/yarn.lock" }}
       - run:
           name: Test client
-          command: cd client && yarn && yarn test
+          command: yarn && yarn test
   build-server:
     working_directory: ~/batch-10-tripen/server #todo: store env
     docker:
