@@ -1,7 +1,7 @@
 
 ## batch-10-tripen
-	
-### Project Specs
+
+## Project Specs
 - [Notion](https://www.notion.so/Batch-10-specs-d18972b6307b405380a294896f2b0899)
 
 ### Instructions
@@ -23,4 +23,3 @@
 - Gifs/ video for frontend PRs.
 - Review each others PR.
 - Don’t commit in someone else PR
-  
