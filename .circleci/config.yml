@@ -27,7 +27,7 @@ jobs:
           name: Test client
           command: cd client && yarn && yarn test
   build-server:
-    working_directory: ~/batch-10-tripen/server #todo: store env
+    working_directory: ~/batch-10-tripen/server #todo: store
     docker:
       - image: circleci/node:10.16.3
     steps:
